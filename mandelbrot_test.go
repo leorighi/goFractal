@@ -1,4 +1,4 @@
-package goFractal
+package github.com/leorighi/goFractal
 
 import (
 	"image"
