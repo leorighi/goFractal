@@ -18,7 +18,7 @@ type Mandelbrot struct {
 	Height int
 }
 
-func (m *Mandelbrot) GeneratePNG(filename string, focusX float64, focusY float64) error {
+func (m Mandelbrot) GeneratePNG(filename string, focusX float64, focusY float64) error {
 	f, err := os.Create(filename)
 	if err != nil {
 		return err
@@ -30,7 +30,7 @@ func (m *Mandelbrot) GeneratePNG(filename string, focusX float64, focusY float64
 	return nil
 }
 
-func (m *Mandelbrot) GenerateGIF(filename string, frames int, focusX float64, focusY float64, zoomSpeed float64) error {
+func (m Mandelbrot) GenerateGIF(filename string, frames int, focusX float64, focusY float64, zoomSpeed float64) error {
 	f, err := os.Create(filename)
 	if err != nil {
 		return err
@@ -57,11 +57,11 @@ func (m *Mandelbrot) GenerateGIF(filename string, frames int, focusX float64, fo
 	})
 }
 
-func (m *Mandelbrot) generateImage(focusX float64, focusY float64) *image.RGBA {
+func (m Mandelbrot) generateImage(focusX float64, focusY float64) *image.RGBA {
 	return m.generateImageWithZoom(1.0, focusX, focusY)
 }
 
-func (m *Mandelbrot) generateImageWithZoom(zoom float64, focusX float64, focusY float64) *image.RGBA {
+func (m Mandelbrot) generateImageWithZoom(zoom float64, focusX float64, focusY float64) *image.RGBA {
 	img := image.NewRGBA(image.Rect(0, 0, m.Width, m.Height))
 	var wg sync.WaitGroup
 
